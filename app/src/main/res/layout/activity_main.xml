@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:layout_editor_absoluteX="center"
+        tools:layout_editor_absoluteY="center">
+
+        <Button
+            android:id="@+id/createAccountButton"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:text="Create Account"
+            tools:layout_editor_absoluteX="center"
+            tools:layout_editor_absoluteY="center" />
+
+        <Button
+            android:id="@+id/cancelHoldButton"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:text="Cancel Hold"
+            tools:layout_editor_absoluteX="116dp"
+            tools:layout_editor_absoluteY="272dp" />
+
+        <Button
+            android:id="@+id/manageSystemButton"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:text="Manage System"
+            tools:layout_editor_absoluteX="116dp"
+            tools:layout_editor_absoluteY="398dp" />
+
+        <Button
+            android:id="@+id/placeHoldButton"
+            android:layout_width="170dp"
+            android:layout_height="50dp"
+            android:text="Place Hold"
+            tools:layout_editor_absoluteX="116dp"
+            tools:layout_editor_absoluteY="532dp" />
+
+
+
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

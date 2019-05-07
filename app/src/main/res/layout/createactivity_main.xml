@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/createUsernameTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="24dp"
+
+        android:gravity="center"
+        android:text="Enter username: "
+        android:textSize="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/getUsernameEditText"
+        android:layout_width="325dp"
+        android:layout_height="47dp"
+        android:layout_below="@id/createUsernameTextView"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createPasswordTextView" />
+
+    <TextView
+        android:id="@+id/createPasswordTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/getUsernameEditText"
+        android:layout_marginStart="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginTop="48dp"
+        android:gravity="center"
+        android:text="Enter Password: "
+        android:textSize="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getPasswordEditText" />
+        <!--app:layout_constraintEnd_toEndOf="parent"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+
+
+    <EditText
+        android:id="@+id/getPasswordEditText"
+        android:layout_width="323dp"
+        android:layout_height="54dp"
+        android:layout_below="@id/createPasswordTextView"
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="40dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createUsernameTextView" />
+
+    <TextView
+        android:id="@+id/accountSuccessTextView"
+        android:layout_width="270dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:layout_marginTop="16dp"
+        android:text="Account has been created."
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/getUsernameEditText" />
+
+    <TextView
+        android:id="@+id/accountFailTextView"
+        android:layout_width="270dp"
+        android:layout_height="54dp"
+        android:layout_marginStart="68dp"
+        android:layout_marginLeft="68dp"
+        android:text="Sorry, account was not valid."
+        android:visibility="invisible"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/accountSuccessTextView" />
+
+    <Button
+        android:id="@+id/createAccSubmit"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="84dp"
+        android:layout_marginLeft="84dp"
+        android:layout_marginTop="52dp"
+        android:text="Submit"
+        android:onClick="hide"
+        app:layout_constraintStart_toStartOf="@+id/accountFailTextView"
+        app:layout_constraintTop_toTopOf="@+id/accountFailTextView" />
+</android.support.constraint.ConstraintLayout>
