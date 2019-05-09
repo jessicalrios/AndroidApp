@@ -10,72 +10,110 @@
     <EditText
         android:id="@+id/pickupEditText"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginRight="124dp"
+        android:layout_marginBottom="76dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="MM/DD/YYYY (AM)"
+        android:hint="MM/DD/YYYY HH:MM"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="42dp" />
+        app:layout_constraintBottom_toTopOf="@+id/searchTimeButton"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="36dp"
+        android:layout_height="21dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="52dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:text="Pickup"
-        tools:layout_editor_absoluteX="59dp"
-        tools:layout_editor_absoluteY="53dp" />
+        app:layout_constraintEnd_toStartOf="@+id/pickupEditText"
+        app:layout_constraintHorizontal_bias="0.486"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="36dp"
+        android:layout_height="18dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="8dp"
         android:text="Return"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="117dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.156" />
 
     <Button
         android:id="@+id/searchTimeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginLeft="148dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="16dp"
         android:text="Search"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="161dp" />
+        app:layout_constraintBottom_toTopOf="@+id/booksAvailable"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
     <EditText
         android:id="@+id/returnEditText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginRight="124dp"
         android:ems="10"
         android:gravity="center"
-        android:hint="MM/DD/YYYY (AM)"
+        android:hint="MM/DD/YYYY HH:MM"
         android:inputType="textPersonName"
-        tools:layout_editor_absoluteX="128dp"
-        tools:layout_editor_absoluteY="102dp" />
+        app:layout_constraintBottom_toTopOf="@+id/bookTitle"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.185" />
 
     <TextView
         android:id="@+id/booksAvailable"
         android:layout_width="294dp"
         android:layout_height="341dp"
-        tools:layout_editor_absoluteX="59dp"
-        tools:layout_editor_absoluteY="213dp" />
+        android:layout_marginStart="44dp"
+        android:layout_marginLeft="44dp"
+        android:layout_marginTop="228dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/bookSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="148dp"
+        android:layout_marginLeft="148dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="8dp"
         android:text="Reserve"
-        tools:layout_editor_absoluteX="141dp"
-        tools:layout_editor_absoluteY="642dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/bookTitle"
+        app:layout_constraintVertical_bias="0.171" />
 
     <EditText
         android:id="@+id/bookTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="84dp"
+        android:layout_marginLeft="84dp"
+        android:layout_marginTop="352dp"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Book Name"
         android:gravity="center"
-        tools:layout_editor_absoluteX="99dp"
-        tools:layout_editor_absoluteY="577dp" />
+        android:hint="Book Name"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/booksAvailable" />
 </android.support.constraint.ConstraintLayout>

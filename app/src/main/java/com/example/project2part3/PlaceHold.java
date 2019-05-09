@@ -12,7 +12,6 @@ import android.content.DialogInterface;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-
 import java.lang.reflect.Array;
 import java.util.Calendar;
 import java.util.Date;
@@ -62,32 +61,26 @@ public class PlaceHold extends AppCompatActivity {
                     alertDialog.show();
                 }
 
-
-                String books = db.getBooks(p, r);
-
-                if(books.isEmpty()){
-                    //no books where found at that time;
-                }
-
-                reserve.setVisibility(View.VISIBLE);
-                booksAvailableText.setText(books);
+//                 books = db.getBooks(p, r);
+//
+//                if(books.isEmpty()){
+//
+//                }
+//
+//                reserve.setVisibility(View.VISIBLE);
+//                booksAvailableText.setText(books);
             }
         });
 
-
-
     }
 
-    //public boolean validDates(String p, String r){
-//        return true;
-//    }
-
-    private Boolean confirmCheckOut(String checkout, String checkin){
-        String pattern = "MM/dd HH:mm";
+    private static Boolean confirmCheckOut(String checkout, String checkin){
+        String pattern = "MM/dd/yyyy HH:mm";
 
         Date dateDay1;
         Date dateDay2;
         Date dummyDate;
+
         try{
             dateDay1 = new SimpleDateFormat(pattern).parse(checkout);
             dateDay2 = new SimpleDateFormat(pattern).parse(checkin);
@@ -96,11 +89,11 @@ public class PlaceHold extends AppCompatActivity {
             return false;
         }
 
-        SimpleDateFormat tempPattern = new SimpleDateFormat("MM/dd");
+        SimpleDateFormat tempPattern = new SimpleDateFormat("MM/dd/yy");
         Date tempDate;
 
         try{
-            tempDate = tempPattern.parse(dateDay1.getMonth() + "/" + dateDay1.getDay());
+            tempDate = tempPattern.parse(dateDay1.getMonth() + "/" + dateDay1.getDay()+"/" + dateDay1.getYear());
         }catch (Exception e){
             return false;
         }
@@ -123,6 +116,7 @@ public class PlaceHold extends AppCompatActivity {
         try{
             dummyDate.setMonth(Integer.parseInt(new SimpleDateFormat("MM").format(c.getTime())));
             dummyDate.setDate(Integer.parseInt(new SimpleDateFormat("dd").format(c.getTime())));
+            dummyDate.setYear(Integer.parseInt(new SimpleDateFormat("yyyy").format(c.getTime())));
         }catch (Exception e){
             return false;
         }
