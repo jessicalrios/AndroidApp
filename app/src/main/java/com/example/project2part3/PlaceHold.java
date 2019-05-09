@@ -9,8 +9,9 @@ import android.widget.Button;
 import	android.support.v7.app.AlertDialog;
 import android.content.DialogInterface;
 
-import java.text.ParseException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.lang.reflect.Array;
 import java.util.Calendar;
@@ -74,56 +75,27 @@ public class PlaceHold extends AppCompatActivity {
 
     }
 
-    private static Boolean confirmCheckOut(String checkout, String checkin){
-        String pattern = "MM/dd/yyyy HH:mm";
+    private static Boolean confirmCheckOut(String checkout, String checkin)
+    {
+        try {
+            DateFormat formatter;
+            formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm a");
+            Date dateCheckin = (Date)formatter.parse(checkout);
+            Date userCheckout = (Date)formatter.parse(checkin);
 
-        Date dateDay1;
-        Date dateDay2;
-        Date dummyDate;
+            Calendar cal =Calendar.getInstance();
+            cal.setTime(userCheckout);
+            cal.setTime(dateCheckin);
+            cal.add(Calendar.DATE, 7);
 
-        try{
-            dateDay1 = new SimpleDateFormat(pattern).parse(checkout);
-            dateDay2 = new SimpleDateFormat(pattern).parse(checkin);
-            dummyDate = new SimpleDateFormat(pattern).parse(checkout);
-        }catch(Exception e){
-            return false;
-        }
+            Date maxCheckout = cal.getTime();
 
-        SimpleDateFormat tempPattern = new SimpleDateFormat("MM/dd/yy");
-        Date tempDate;
+            if (userCheckout.compareTo(maxCheckout) > 0){ return false; }
+            else{ return true; }
 
-        try{
-            tempDate = tempPattern.parse(dateDay1.getMonth() + "/" + dateDay1.getDay()+"/" + dateDay1.getYear());
-        }catch (Exception e){
-            return false;
-        }
-
-
-        Calendar c = Calendar.getInstance();
-        String temp = tempDate.toString();
-        try{
-            //Setting the date to the given date
-            c.setTime(tempPattern.parse(temp));
-        }catch(ParseException e){
-            e.printStackTrace();
-        }
-
-
-        //Number of Days to add
-        c.add(Calendar.DAY_OF_MONTH, 7);
-
-//        dummyDate.setMonth();
-        try{
-            dummyDate.setMonth(Integer.parseInt(new SimpleDateFormat("MM").format(c.getTime())));
-            dummyDate.setDate(Integer.parseInt(new SimpleDateFormat("dd").format(c.getTime())));
-            dummyDate.setYear(Integer.parseInt(new SimpleDateFormat("yyyy").format(c.getTime())));
-        }catch (Exception e){
-            return false;
-        }
-
-        if(dateDay2.after(dummyDate)){
-            return false;
-        }
-        return true;
+        } catch (ParseException e)
+        {System.out.println("Exception: " + e);  }
+        return false;
     }
+
 }
