@@ -6,48 +6,59 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="center"
-        tools:layout_editor_absoluteY="center">
+    <Button
+        android:id="@+id/createAccountButton"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="104dp"
+        android:layout_marginLeft="104dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:onClick="users_activity"
+        android:text="Create Account"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.093"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/createAccountButton"
-            android:layout_width="170dp"
-            android:layout_height="50dp"
-            android:text="Create Account"
-            tools:layout_editor_absoluteX="center"
-            tools:layout_editor_absoluteY="center" />
+    <Button
+        android:id="@+id/manageSystemButton"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginTop="80dp"
+        android:onClick="manageSystem_activity"
+        android:text="Manage System"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cancelHoldButton" />
 
-        <Button
-            android:id="@+id/cancelHoldButton"
-            android:layout_width="170dp"
-            android:layout_height="50dp"
-            android:text="Cancel Hold"
-            tools:layout_editor_absoluteX="116dp"
-            tools:layout_editor_absoluteY="272dp" />
+    <Button
+        android:id="@+id/placeHoldButton"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginTop="80dp"
+        android:onClick="hold_activity"
+        android:text="Place Hold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manageSystemButton" />
 
-        <Button
-            android:id="@+id/manageSystemButton"
-            android:layout_width="170dp"
-            android:layout_height="50dp"
-            android:text="Manage System"
-            tools:layout_editor_absoluteX="116dp"
-            tools:layout_editor_absoluteY="398dp" />
-
-        <Button
-            android:id="@+id/placeHoldButton"
-            android:layout_width="170dp"
-            android:layout_height="50dp"
-            android:text="Place Hold"
-            tools:layout_editor_absoluteX="116dp"
-            tools:layout_editor_absoluteY="532dp" />
+    <Button
+        android:id="@+id/cancelHoldButton"
+        android:layout_width="170dp"
+        android:layout_height="50dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginLeft="116dp"
+        android:layout_marginTop="80dp"
+        android:onClick="cancelHold_activity"
+        android:text="Cancel Hold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/createAccountButton" />
 
 
-
-    </LinearLayout>
 
 
 </android.support.constraint.ConstraintLayout>
