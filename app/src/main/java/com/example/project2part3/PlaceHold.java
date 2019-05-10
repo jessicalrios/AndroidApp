@@ -1,21 +1,19 @@
 package com.example.project2part3;
 
-import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
-import android.widget.Button;
-import	android.support.v7.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
@@ -173,14 +171,17 @@ public class PlaceHold extends AppCompatActivity {
                     book = db.getBookInfo(bookTitleEditTexview.getText().toString());
 
                     android.app.AlertDialog.Builder builder1 = new android.app.AlertDialog.Builder( PlaceHold.this );
-                    builder1.setMessage(book.getTitle() + "\n" + book.getAuthor() + "\n" + pickupTimeEditText.getText().toString() + "\n" + returnTimeEditText.getText().toString() + "\n" + book.getFee());
+                    builder1.setMessage(book.getTitle() + "\n" + book.getAuthor() + "\n" + pickupTimeEditText.getText().toString() + "\n" + returnTimeEditText.getText().toString() + "\n$" + book.getFee() * db.getHoursPublic( pickupTimeEditText.getText().toString(), returnTimeEditText.getText().toString()) );
                     builder1.setCancelable(true);
 
                     builder1.setPositiveButton(
                             "Yes",
                             new DialogInterface.OnClickListener() {
                                 public void onClick(DialogInterface dialog, int id) {
-                                    db.inserHold(book, pickupTimeEditText.getText().toString(), returnTimeEditText.getText().toString());
+                                    Log.d("Hold", username.getText().toString());
+
+                                    db.inserHold(username.getText().toString() , book, pickupTimeEditText.getText().toString(), returnTimeEditText.getText().toString());
+
                                     startActivity(new Intent(PlaceHold.this, MainActivity.class));
                                 }
                             });
