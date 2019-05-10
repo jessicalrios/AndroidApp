@@ -1,9 +1,11 @@
 package com.example.project2part3;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Button;
 import	android.support.v7.app.AlertDialog;
@@ -16,6 +18,9 @@ import java.util.ArrayList;
 import java.lang.reflect.Array;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 public class PlaceHold extends AppCompatActivity {
 
@@ -23,7 +28,12 @@ public class PlaceHold extends AppCompatActivity {
 
     private EditText pickupTimeEditText, returnTimeEditText, bookTitleEditTexview;
     private TextView booksAvailableText;
-    private Button searchTime, reserve;
+    private Button searchTime, reserve, reserveButton;
+    private EditText username, password;
+    private Set<String> books;
+
+    private Book book;
+    private String b;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +47,16 @@ public class PlaceHold extends AppCompatActivity {
         searchTime = (Button) findViewById(R.id.searchTimeButton);
         reserve = (Button) findViewById(R.id.bookSearch);
 
-        reserve.setVisibility(View.INVISIBLE);
+        username = (EditText) findViewById(R.id.username);
+        password = (EditText) findViewById(R.id.password);
+        reserveButton = (Button) findViewById(R.id.reserveButton);
 
+        reserve.setVisibility(View.INVISIBLE);
+        username.setVisibility(View.INVISIBLE);
+        password.setVisibility(View.INVISIBLE);
+        reserveButton.setVisibility(View.INVISIBLE);
+
+        books = new HashSet<String>();
         db = new DataBase(this);
 
         searchTime.setOnClickListener(new View.OnClickListener() {
@@ -60,16 +78,126 @@ public class PlaceHold extends AppCompatActivity {
                     });
 
                     alertDialog.show();
+                    return;
                 }
 
-//                 books = db.getBooks(p, r);
-//
-//                if(books.isEmpty()){
-//
-//                }
-//
-//                reserve.setVisibility(View.VISIBLE);
-//                booksAvailableText.setText(books);
+                 books = db.getBooksAvailable(p, r);
+
+                if(books.isEmpty()){
+                    AlertDialog alertDialog = new AlertDialog.Builder(PlaceHold.this).create();
+                    alertDialog.setTitle("");
+                    alertDialog.setMessage("No book available during this time");
+
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Okay", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            ;
+                        }
+                    });
+
+                    alertDialog.show();
+                    return;
+                }
+
+                String temp = "";
+
+                Iterator<String> itr = books.iterator();
+
+                while(itr.hasNext()){
+                    temp = temp + itr.next() +'\n';
+                }
+
+                reserve.setVisibility(View.VISIBLE);
+                booksAvailableText.setText(temp);
+            }
+        });
+
+        reserve.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String bo = bookTitleEditTexview.getText().toString();
+
+                if(!books.contains(bookTitleEditTexview.getText().toString())) {
+                    AlertDialog alertDialog = new AlertDialog.Builder(PlaceHold.this).create();
+                    alertDialog.setTitle("");
+                    alertDialog.setMessage("The book is not on the list");
+
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Okay", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            ;
+                        }
+                    });
+
+                    alertDialog.show();
+                    return;
+                }
+
+                pickupTimeEditText.setVisibility(View.INVISIBLE);
+                returnTimeEditText.setVisibility(View.INVISIBLE);
+                bookTitleEditTexview.setVisibility(View.INVISIBLE);
+                booksAvailableText.setVisibility(View.INVISIBLE);
+                searchTime.setVisibility(View.INVISIBLE);
+                reserve.setVisibility(View.INVISIBLE);
+
+                reserveButton.setVisibility(View.VISIBLE);
+                password.setVisibility(View.VISIBLE);
+                username.setVisibility(View.VISIBLE);
+
+
+            }
+        });
+
+        reserveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                String u = username.getText().toString();
+                String p = password.getText().toString();
+
+                if( !db.getUser(u, p) ){
+                    AlertDialog alertDialog = new AlertDialog.Builder(PlaceHold.this).create();
+                    alertDialog.setTitle("");
+                    alertDialog.setMessage("Invalid information");
+
+                    alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Okay", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+
+                        }
+                    });
+
+                    alertDialog.show();
+                    return;
+                }
+                else{
+
+                    book = db.getBookInfo(bookTitleEditTexview.getText().toString());
+
+                    android.app.AlertDialog.Builder builder1 = new android.app.AlertDialog.Builder( PlaceHold.this );
+                    builder1.setMessage(book.getTitle() + "\n" + book.getAuthor() + "\n" + pickupTimeEditText.getText().toString() + "\n" + returnTimeEditText.getText().toString() + "\n" + book.getFee());
+                    builder1.setCancelable(true);
+
+                    builder1.setPositiveButton(
+                            "Yes",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    db.inserHold(book, pickupTimeEditText.getText().toString(), returnTimeEditText.getText().toString());
+                                    startActivity(new Intent(PlaceHold.this, MainActivity.class));
+                                }
+                            });
+
+                    builder1.setNegativeButton(
+                            "No",
+                            new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+                                    startActivity(new Intent(PlaceHold.this, MainActivity.class));
+                                }
+                            });
+
+                    android.app.AlertDialog alert11 = builder1.create();
+                    alert11.show();
+
+                    return;
+                }
             }
         });
 
