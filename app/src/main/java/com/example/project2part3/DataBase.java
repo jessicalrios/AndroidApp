@@ -112,13 +112,6 @@ public class DataBase {
 
 
 
-
-
-
-
-
-
-
     private static class DBHelper extends SQLiteOpenHelper{
 
         public DBHelper(Context c, String name, SQLiteDatabase.CursorFactory factory, int version){
@@ -169,6 +162,8 @@ public class DataBase {
 
 
     public boolean addUsersDB(Users users){
+
+        insertUserMangage(users.getUserName());
         String where = USERNAME + "= ?";
         String[] whereArgs = { users.getUserName() };
 

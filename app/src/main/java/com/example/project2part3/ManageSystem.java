@@ -75,6 +75,19 @@ public class ManageSystem extends AppCompatActivity {
                 builder1.setMessage("Add a book");
                 builder1.setCancelable(true);
 
+                doneRecordsButton.setVisibility(View.VISIBLE);
+
+
+            }
+        });
+
+        doneRecordsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.app.AlertDialog.Builder builder1 = new android.app.AlertDialog.Builder( ManageSystem.this );
+                builder1.setTitle("");
+                builder1.setMessage("Add book");
+                builder1.setCancelable(true);
                 builder1.setPositiveButton(
                         "Yes",
                         new DialogInterface.OnClickListener() {
